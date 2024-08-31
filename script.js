@@ -8,14 +8,19 @@
       e.preventDefault();
       
       fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => console.log('Success!', response)) // Data store hocce but response asena. Fetch problem dekhay console e. Ejonno catch a greetings dia rakhsi. 
+        .then(response => {
+        msg.innerHTML = 'Thank You For Subscribing!';
+        setTimeout(() => {
+          msg.innerHTML = '';
+        }, 5000);
+        form.reset();  
+        console.log('Success!', response)}) // Data store hocce but response asena. Fetch problem dekhay console e. Ejonno then and catch 2ta te greetings dia rakhsi. 
         .catch(error => {
         msg.innerHTML = 'Thank You For Subscribing!';
         setTimeout(() => {
           msg.innerHTML = '';
         }, 5000);
-        console.error('Error!', error.message);
         form.reset();
+        console.error('Error!', error.message);
       })
     })
-  
